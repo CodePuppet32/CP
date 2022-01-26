@@ -7,6 +7,7 @@ int algo(int arr[], int size, int num_cows) {
     int max_distance = arr[size-1] - arr[0];
     int min_distance = 0;
 
+    // using binary search
     while (min_distance <= max_distance) {
         int mid_distance = (min_distance + max_distance)/2;
         // for every distance check if we can place cows in that configuration
