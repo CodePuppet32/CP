@@ -16,12 +16,12 @@ void algo(vector<vector<int>> matrix) {
             cout << matrix[row][right] << " ";
         }
         --right;
-        if (top <= bottom) {
-            for (int column=right-1; column >= left; --column) {
+        if (top <= bottom && left <= right) {
+            for (int column=right; column >= left; --column) {
                 cout << matrix[bottom][column] << " ";
             }
             --bottom;
-            for (int row=bottom-1; row > top; --row) {
+            for (int row=bottom; row >= top; --row) {
                 cout << matrix[row][left] << " ";
             }
             ++left;
@@ -30,9 +30,11 @@ void algo(vector<vector<int>> matrix) {
 }
 
 int main() {
-    vector<vector<int>> matrix{{1, 2, 3, 4, 5}, 
-                               {5, 6, 7, 8, 6}, 
-                               {9, 10, 11, 12, 7}};
+    vector<vector<int>> matrix{{1, 2, 3},
+                               {12, 13, 4}, 
+                               {11, 14, 5}, 
+                               {10, 15, 6}, 
+                               {9, 8, 7}};
     algo(matrix);
     return 0;
 }
