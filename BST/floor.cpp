@@ -82,10 +82,28 @@ public:
   }
 };
 
+int BST_floor(BST *head, int number) {
+    int res = INT_MIN;
+
+    while (head) {
+        if (head->value < number) {
+            res = max(res, head->value);
+            head = head->right;
+        } else {
+            head = head->left;
+        }
+    }
+    return res;
+}
 
 int main() {
     BST* head = new BST(10);
+    head->left = new BST(5);
+    head->right = new BST(15);
+    head->right->right = new BST(30);
+    head->right->left = new BST(12);
     
-    cout << head->value << endl;
+    cout << BST_floor(head, 100) << endl;
     return 0;
+
 }
