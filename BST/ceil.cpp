@@ -82,15 +82,15 @@ public:
   }
 };
 
-int BST_floor(BST *head, int number) {
-    int res = INT_MIN;
+int BST_ceil(BST *head, int number) {
+    int res = INT_MAX;
 
     while (head) {
-        if (head->value <= number) {
+        if (head->value >= number) {
             res = head->value;
-            head = head->right;
-        } else {
             head = head->left;
+        } else {
+            head = head->right;
         }
     }
     return res;
@@ -103,7 +103,7 @@ int main() {
     head->right->right = new BST(30);
     head->right->left = new BST(12);
     
-    cout << BST_floor(head, 14) << endl;
+    cout << BST_ceil(head, 100) << endl;
     return 0;
 
 }
