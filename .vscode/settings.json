@@ -2,7 +2,8 @@
   "files.associations": {
     "array": "cpp",
     "string": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "iostream": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "C:/msys64/mingw64/bin/gcc.exe",
   "C_Cpp_Runner.cppCompilerPath": "C:/msys64/mingw64/bin/g++.exe",
