@@ -1,41 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int pivot(vector<int>& arr, int beg, int end) {
-	int target = arr[beg];
-	int i = beg+1;
-    int j = end;
-	while (1) {
-		while (arr[i]<=target)
-            ++i;
-        while (arr[j]>target)
-            --j;
-        if (i < j)
-            swap(arr[i], arr[j]);
-        else
-            break;
-	}
-    swap(arr[j], arr[beg]);
-    return j;
+int qSort(int arr[], int beg, int end) {
+    int i, j;
+    i = j = beg;
+
+    // scan all the elements except the last one
+    while (j < end) {
+      // if we encounter a smaller element than our pivot we want to swap it with i
+      if (arr[j] < arr[end]) {
+        // search for a greater element than jth and swap
+        while (i < j && arr[i] < arr[end]) {
+          ++i;
+        }
+        swap(arr[j], arr[i]);
+        ++i;
+      }
+      ++j;
+    }
+    swap(arr[end], arr[i]);
+    return i;
 }
 
-void qSort(vector<int>& arr, int beg, int end) {
-	if (beg < end) {
-		int piv = pivot(arr, beg, end);
-		qSort(arr, beg, piv-1);
-		qSort(arr, piv+1, end);
-	}
-}
-
-void quickSort(vector<int>& array) {
-	qSort(array, 0, array.size()-1);
+void algo(int arr[], int beg, int end) {
+  if (beg < end) {
+    int pivot = qSort(arr, beg, end);
+    algo(arr, beg, pivot-1);
+    algo(arr, pivot+1, end);
+  }
 }
 
 int main() {
-    vector<int> arr{43, 12, 32, 5, 1, 2, 3, -23, 4, -34};
-    quickSort(arr);
-    for (auto i: arr) {
-        cout << i << " ";
+    int arr[] = {34, 45, 234, 234, 54, 324, 65, 23, 234 , 54};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    algo(arr, 0, size-1);
+    for (int i = 0; i < size; i++) {
+      cout << arr[i] << ' ';
     }
     return 0;
 }
+

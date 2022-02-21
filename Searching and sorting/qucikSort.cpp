@@ -1,21 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int pivot(vector<int> &arr, int beg, int end) {
-    int pivot = arr[beg];
-    int l=beg-1, h=end+1;
-    while (l<h) {
-        do {
-            ++l;
-        } while(pivot < arr[l]);
-        do {
-            --h;
-        } while(pivot > arr[h]);
-        if (l >= h) return h;
-        swap(arr[l], arr[h]);
-    }
+int pivot(vector<int>& arr, int beg, int end) {
+	int target = arr[end];
+	int i = beg;
+    int j = end-1;
+	while (1) {
+		while (arr[i]<=target)
+            ++i;
+        while (arr[j]>target)
+            --j;
+        if (i < j)
+            swap(arr[i], arr[j]);
+        else
+            break;
+	}
+    swap(arr[j], arr[end]);
+    return j;
 }
-
 void quickSort(vector<int> &arr, int begin, int end) {
     if (begin < end) {
         int piv = pivot(arr, begin, end); 
